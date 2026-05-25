@@ -14,7 +14,6 @@ import {
   isCompleted, 
   calculateStreak, 
   formatDate,
-  seedSampleData,
   exportData,
   importData
 } from './storage.js';
@@ -648,16 +647,7 @@ function setupEventListeners() {
     });
   }
 
-  // 8. Seeding Button
-  const seedBtn = document.getElementById('btn-seed-data');
-  if (seedBtn) {
-    seedBtn.addEventListener('click', () => {
-      if (confirm("This will replace current local tracking with a realistic 30-day simulated history of habits and streaks. Continue?")) {
-        seedSampleData();
-        renderAll();
-      }
-    });
-  }
+  // 8. (Seed button event listener removed for production release)
 
   // 9. Data Portability Actions (Export / Import)
   const exportBtn = document.getElementById('btn-export-data');
