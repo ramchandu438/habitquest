@@ -2,13 +2,19 @@
   "name": "habitquest",
   "version": "1.0.0",
   "description": "Premium Gamified Habit Tracker SPA",
-  "main": "index.html",
+  "main": "main.js",
   "scripts": {
-    "dev": "npx http-server ./ -c-1 -p 3050 -o"
+    "dev": "npx http-server ./ -c-1 -p 3050 -o",
+    "desktop": "electron .",
+    "package-win": "electron-packager . HabitQuest --platform=win32 --arch=x64 --out=dist --overwrite"
   },
   "dependencies": {
     "http-server": "^14.1.1"
   },
   "author": "Antigravity Pair Program",
-  "license": "ISC"
+  "license": "ISC",
+  "devDependencies": {
+    "electron": "^42.2.0",
+    "electron-packager": "^17.1.2"
+  }
 }
