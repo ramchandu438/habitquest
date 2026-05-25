@@ -1,0 +1,78 @@
+/* HabitQuest Vintage Journal Theme Configuration */
+
+:root {
+  --font-family: 'Courier Prime', 'Georgia', serif;
+  
+  --bg-primary: #f6f4ed;           /* Soft Ivory Paper */
+  --bg-secondary: #fbfbf8;         /* Clean Cream Paper Card */
+  --bg-tertiary: #eae9e0;          /* Aged Paper Accent Panels */
+  
+  --glass-bg: #fbfbf8;             /* Paper Card Background */
+  --glass-border: #222222;         /* Solid Pen/Ink Outline */
+  --glass-shadow: rgba(0, 0, 0, 0.08); /* Soft paper shadow */
+  
+  --text-primary: #121212;         /* Crisp Ink Black */
+  --text-secondary: #4a4a4a;       /* Charcoal Pencil Slate */
+  --text-muted: #7b7b7b;           /* Faded Ink Grey */
+  
+  --accent: #121212;               /* Bold Fountain Pen Ink */
+  --accent-secondary: #4a4a4a;     /* Dark Charcoal Ink */
+  --accent-glow: rgba(0, 0, 0, 0);
+  --accent-secondary-glow: rgba(0, 0, 0, 0);
+  
+  /* Category Colors (Monochrome Faded Ink / Pencil Graphite Tones) */
+  --cat-health: 0 0% 10%;          /* Dark Ink Black */
+  --cat-mind: 0 0% 25%;            /* Carbon Pencil */
+  --cat-career: 0 0% 40%;          /* Charcoal Slate */
+  --cat-social: 0 0% 50%;          /* Graphite Medium Grey */
+  --cat-finance: 0 0% 60%;         /* Soft Pencil Grey */
+  --cat-creative: 0 0% 70%;        /* Faded Ink Stamp */
+  
+  --success: #121212;
+  --warning: #4a4a4a;
+  --danger: #000000;
+  --info: #333333;
+  --xp-color: #121212;
+  
+  --radius-sm: 4px;                /* Sharp corners like an old diary binder */
+  --radius-md: 6px;
+  --radius-lg: 8px;
+  --radius-circle: 50%;
+  
+  --transition-fast: 0.2s cubic-bezier(0.25, 0.8, 0.25, 1);
+  --transition-normal: 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+  --transition-slow: 0.5s cubic-bezier(0.25, 0.8, 0.25, 1);
+  
+  --glow-intensity: 0;             /* Fades out all glowing neon shadow components */
+}
+
+/* Fallback/alias selector for the data-theme attribute */
+[data-theme="vintage-journal"] {
+  --bg-primary: #f6f4ed;
+  --bg-secondary: #fbfbf8;
+  --bg-tertiary: #eae9e0;
+  --glass-bg: #fbfbf8;
+  --glass-border: #222222;
+  --glass-shadow: rgba(0, 0, 0, 0.08);
+  --text-primary: #121212;
+  --text-secondary: #4a4a4a;
+  --text-muted: #7b7b7b;
+  --accent: #121212;
+  --accent-secondary: #4a4a4a;
+  --cat-health: 0 0% 10%;
+  --cat-mind: 0 0% 25%;
+  --cat-career: 0 0% 40%;
+  --cat-social: 0 0% 50%;
+  --cat-finance: 0 0% 60%;
+  --cat-creative: 0 0% 70%;
+  --success: #121212;
+  --warning: #4a4a4a;
+  --danger: #000000;
+  --info: #333333;
+  --xp-color: #121212;
+  --radius-sm: 4px;
+  --radius-md: 6px;
+  --radius-lg: 8px;
+  --font-family: 'Courier Prime', 'Georgia', serif;
+  --glow-intensity: 0;
+}

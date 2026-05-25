@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="vintage-journal">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="HabitQuest - A highly aesthetic gamified habit tracker with detailed interactive graphs, customizable themes, experience leveling, and journal notes.">
+  <title>HabitQuest - Gamified Habit Tracker</title>
+  
+  <!-- Premium Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Courier+Prime:ital,wght@0,400;0,700;1,400;1,700&family=Outfit:wght@300;400;500;600;700;800;900&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet">
+  
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="styles/themes.css">
+  <link rel="stylesheet" href="styles/main.css">
+</head>
+<body>
+
+  <div class="app-container">
+    
+    <!-- Top Header and User Progression Profile -->
+    <header class="glass-panel">
+      <div class="brand-section">
+        <div class="brand-logo">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline>
+          </svg>
+        </div>
+        <div class="brand-section-text">
+          <h1 class="brand-title">HabitQuest</h1>
+          <span id="current-date-display" style="font-size: 0.8rem; font-weight: 600; color: var(--text-secondary); margin-top: 4px; display: block; letter-spacing: 0.2px;"></span>
+        </div>
+      </div>
+      
+      <!-- Gamified Leveling Meter -->
+      <div class="profile-widget">
+        <div class="level-badge" id="level-badge-widget">
+          <span>LVL</span>
+          <strong id="user-level-number">1</strong>
+        </div>
+        <div class="xp-container">
+          <div class="xp-label">
+            <span>Progress</span>
+            <span><strong id="xp-current">0</strong> / <strong id="xp-target">100</strong> XP</span>
+          </div>
+          <div class="xp-bar-bg">
+            <div class="xp-bar-fill" id="xp-fill"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Controls Section -->
+      <div class="controls-section">
+        <button id="btn-open-add-modal" class="btn btn-primary">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+          Add Habit
+        </button>
+      </div>
+    </header>
+
+    <!-- Main Navigation Tabs -->
+    <nav class="nav-tabs" aria-label="Main Navigation">
+      <button class="tab-link active" data-target="panel-dashboard">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"></rect><rect x="14" y="3" width="7" height="7"></rect><rect x="14" y="14" width="7" height="7"></rect><rect x="3" y="14" width="7" height="7"></rect></svg>
+        Dashboard
+      </button>
+      <button class="tab-link" data-target="panel-analytics">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="20" x2="18" y2="10"></line><line x1="12" y1="20" x2="12" y2="4"></line><line x1="6" y1="20" x2="6" y2="14"></line></svg>
+        Analytics
+      </button>
+      <button class="tab-link" data-target="panel-journal">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20h9"></path><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"></path></svg>
+        Daily Reflections
+      </button>
+      <button class="tab-link" data-target="panel-achievements">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="7"></circle><polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"></polyline></svg>
+        Achievements
+      </button>
+    </nav>
+
+    <!-- TAB PANEL: Dashboard -->
+    <main id="panel-dashboard" class="tab-panel active">
+      <div class="dashboard-grid">
+        
+        <!-- Left Side: Habits Tracker -->
+        <section class="habits-section">
+          
+          <!-- Filters & Snapshot Stats -->
+          <div class="dashboard-filters">
+            <div class="filter-group">
+              <button class="filter-btn active" data-filter="all">All</button>
+              <button class="filter-btn" data-filter="health">Health</button>
+              <button class="filter-btn" data-filter="mind">Mind</button>
+              <button class="filter-btn" data-filter="career">Career</button>
+              <button class="filter-btn" data-filter="social">Social</button>
+              <button class="filter-btn" data-filter="finance">Finance</button>
+              <button class="filter-btn" data-filter="creative">Creative</button>
+            </div>
+            
+            <div class="stats-summary">
+              <div class="quick-stat">
+                <span class="streak-label">Total Habits: </span>
+                <span id="total-habits-val" class="quick-stat-val">0</span>
+              </div>
+              <div class="quick-stat">
+                <span class="streak-label">Completed Today: </span>
+                <span id="completed-today-val" class="quick-stat-val">0</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Dynamic Habit Cards Container -->
+          <div id="habits-grid" class="habits-grid">
+            <!-- Loaded dynamically in ui.js -->
+          </div>
+        </section>
+
+        <!-- Right Side Widgets -->
+        <aside class="sidebar-panel">
+          
+          <!-- Today's completion circular progress -->
+          <div class="glass-panel daily-focus-widget">
+            <h2 class="section-title" style="margin-bottom: 12px;">Daily Completion</h2>
+            <div class="circular-progress-wrap" id="today-circular-progress">
+              <!-- Rendered dynamically in charts.js -->
+            </div>
+          </div>
+
+          <!-- Mini activity snapshot timeline -->
+          <div class="glass-panel">
+            <h2 class="section-title" style="margin-bottom: 16px;">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+              Recent Logs
+            </h2>
+            <div class="activity-mini-list" id="activity-snapshot">
+              <!-- Loaded dynamically in ui.js -->
+            </div>
+          </div>
+        </aside>
+
+      </div>
+    </main>
+
+    <!-- TAB PANEL: Analytics -->
+    <section id="panel-analytics" class="tab-panel">
+      <div class="analytics-container">
+        
+        <!-- Heatmap Graph -->
+        <div class="glass-panel" style="grid-column: 1 / -1;">
+          <div class="section-header">
+            <h2 class="section-title">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><line x1="9" y1="3" x2="9" y2="21"></line><line x1="15" y1="3" x2="15" y2="21"></line><line x1="3" y1="9" x2="21" y2="9"></line><line x1="3" y1="15" x2="21" y2="15"></line></svg>
+              Consistency Heatmap (Last 24 Weeks)
+            </h2>
+          </div>
+          <div class="heatmap-scroll-container">
+            <div id="heatmap-render-area" class="heatmap-render-area">
+              <!-- Rendered dynamically in charts.js -->
+            </div>
+          </div>
+        </div>
+
+        <!-- Categorical focus breakdown -->
+        <div class="glass-panel">
+          <h2 class="section-title" style="margin-bottom: 20px;">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="20" x2="18" y2="10"></line><line x1="12" y1="20" x2="12" y2="4"></line><line x1="6" y1="20" x2="6" y2="14"></line></svg>
+            Focus breakdown
+          </h2>
+          <div id="category-stats-render-area" class="category-stats-render-area">
+            <!-- Loaded dynamically in charts.js -->
+          </div>
+        </div>
+
+        <!-- Weekly Progress Trend Chart Panel -->
+        <div class="glass-panel">
+          <h2 class="section-title" style="margin-bottom: 20px;">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline></svg>
+            Weekly Progress Trend
+          </h2>
+          <div id="progress-chart-render-area" class="progress-chart-render-area" style="min-height: 150px; display: flex; align-items: center; justify-content: center;">
+            <!-- Rendered dynamically in charts.js -->
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- TAB PANEL: Daily Reflections -->
+    <section id="panel-journal" class="tab-panel">
+      <div class="journal-timeline" id="journal-timeline">
+        <!-- Loaded dynamically in ui.js -->
+      </div>
+    </section>
+
+    <!-- TAB PANEL: Achievements -->
+    <section id="panel-achievements" class="tab-panel">
+      <div class="glass-panel" style="margin-bottom: 24px; text-align: center; padding: 30px;">
+        <h2 class="section-title" style="justify-content: center; margin-bottom: 8px;">🏆 Achievements Hall</h2>
+        <p style="color: var(--text-secondary); font-size: 0.95rem;">Build consistent habits to level up your character and unlock premium badge rewards!</p>
+      </div>
+      <div id="achievements-grid" class="achievements-grid">
+        <!-- Loaded dynamically in ui.js -->
+      </div>
+    </section>
+
+    <!-- Bottom utility seeding and export panel -->
+    <footer class="footer-section">
+      <p>Data is stored entirely on your device in LocalStorage.</p>
+      <div class="footer-buttons">
+        <button id="btn-seed-data" class="btn">🌱 Seed 30-Day Sample Data</button>
+        <button id="btn-export-data" class="btn">📥 Export Database</button>
+        <button id="btn-import-data" class="btn">📤 Import Backup</button>
+      </div>
+    </footer>
+
+  </div>
+
+  <!-- MODAL: Add Habit Form Dialog -->
+  <div id="add-habit-modal" class="modal-overlay">
+    <div class="modal-content glass-panel">
+      
+      <div class="modal-header">
+        <h2 class="modal-title">Create New Habit</h2>
+        <button id="btn-close-modal" class="modal-close-btn" aria-label="Close modal">&times;</button>
+      </div>
+
+      <form id="add-habit-form">
+        
+        <!-- Habit Title -->
+        <div class="form-group">
+          <label for="habit-name-input" class="form-label">Habit Name</label>
+          <input type="text" id="habit-name-input" class="form-input" placeholder="e.g. Morning Cardio, Read 10 Pages" required autocomplete="off">
+        </div>
+
+        <!-- Category Picker -->
+        <div class="form-group">
+          <label class="form-label">Category</label>
+          <div class="category-picker-grid">
+            <button class="category-picker-btn selected" data-category="health" style="--cat-color: var(--cat-health)">
+              <span>Health</span>
+            </button>
+            <button class="category-picker-btn" data-category="mind" style="--cat-color: var(--cat-mind)">
+              <span>Mind</span>
+            </button>
+            <button class="category-picker-btn" data-category="career" style="--cat-color: var(--cat-career)">
+              <span>Learning</span>
+            </button>
+            <button class="category-picker-btn" data-category="social" style="--cat-color: var(--cat-social)">
+              <span>Social</span>
+            </button>
+            <button class="category-picker-btn" data-category="finance" style="--cat-color: var(--cat-finance)">
+              <span>Finance</span>
+            </button>
+            <button class="category-picker-btn" data-category="creative" style="--cat-color: var(--cat-creative)">
+              <span>Creative</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Frequency settings -->
+        <div class="form-group">
+          <label for="habit-freq-type" class="form-label">Frequency Target</label>
+          <select id="habit-freq-type" class="form-select">
+            <option value="daily">Every Day</option>
+            <option value="weekly_days">Specific Days of Week</option>
+          </select>
+        </div>
+
+        <!-- Specific days selection grid -->
+        <div class="form-group" id="form-specific-days-wrap" style="display: none;">
+          <label class="form-label">Select Active Days</label>
+          <div class="day-selector-grid">
+            <button class="day-selector-btn selected" data-day="1">M</button>
+            <button class="day-selector-btn selected" data-day="2">T</button>
+            <button class="day-selector-btn selected" data-day="3">W</button>
+            <button class="day-selector-btn selected" data-day="4">T</button>
+            <button class="day-selector-btn selected" data-day="5">F</button>
+            <button class="day-selector-btn selected" data-day="6">S</button>
+            <button class="day-selector-btn selected" data-day="7">S</button>
+          </div>
+        </div>
+
+        <!-- Form Buttons -->
+        <div class="form-actions">
+          <button type="submit" class="btn btn-primary" style="width: 100%; margin-top: 10px;">Create Quest</button>
+        </div>
+
+      </form>
+    </div>
+  </div>
+
+  <!-- MODAL: Add/Edit Reflection Note Dialog -->
+  <div id="reflection-note-modal" class="modal-overlay">
+    <div class="modal-content glass-panel">
+      <div class="modal-header">
+        <h2 class="modal-title">Daily Reflection</h2>
+        <button id="btn-close-note-modal" class="modal-close-btn" aria-label="Close modal">&times;</button>
+      </div>
+      <form id="reflection-note-form">
+        <input type="hidden" id="note-habit-id">
+        <input type="hidden" id="note-date">
+        <div class="form-group">
+          <label for="note-text-input" class="form-label" id="note-modal-label">What are your thoughts on completing this habit today?</label>
+          <textarea id="note-text-input" class="form-textarea" rows="4" placeholder="How did it go? Capture feelings, small wins, or reflections..." required></textarea>
+        </div>
+        <div class="form-actions">
+          <button type="submit" class="btn btn-primary" style="width: 100%; margin-top: 10px;">Save Reflection</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- MODAL: Edit Habit Settings Dialog -->
+  <div id="edit-habit-modal" class="modal-overlay">
+    <div class="modal-content glass-panel">
+      <div class="modal-header">
+        <h2 class="modal-title">Edit Habit Settings</h2>
+        <button id="btn-close-edit-modal" class="modal-close-btn" aria-label="Close modal">&times;</button>
+      </div>
+      <form id="edit-habit-form">
+        <input type="hidden" id="edit-habit-id">
+        
+        <!-- Habit Name -->
+        <div class="form-group">
+          <label for="edit-habit-name-input" class="form-label">Habit Name</label>
+          <input type="text" id="edit-habit-name-input" class="form-input" required autocomplete="off">
+        </div>
+
+        <!-- Category Picker (Genre) -->
+        <div class="form-group">
+          <label class="form-label">Category (Genre)</label>
+          <div class="category-picker-grid" id="edit-category-picker-grid">
+            <button class="category-picker-btn edit-cat-picker-btn selected" data-category="health" style="--cat-color: var(--cat-health)">
+              <span>Health</span>
+            </button>
+            <button class="category-picker-btn edit-cat-picker-btn" data-category="mind" style="--cat-color: var(--cat-mind)">
+              <span>Mind</span>
+            </button>
+            <button class="category-picker-btn edit-cat-picker-btn" data-category="career" style="--cat-color: var(--cat-career)">
+              <span>Learning</span>
+            </button>
+            <button class="category-picker-btn edit-cat-picker-btn" data-category="social" style="--cat-color: var(--cat-social)">
+              <span>Social</span>
+            </button>
+            <button class="category-picker-btn edit-cat-picker-btn" data-category="finance" style="--cat-color: var(--cat-finance)">
+              <span>Finance</span>
+            </button>
+            <button class="category-picker-btn edit-cat-picker-btn" data-category="creative" style="--cat-color: var(--cat-creative)">
+              <span>Creative</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Frequency Target -->
+        <div class="form-group">
+          <label for="edit-habit-freq-type" class="form-label">Frequency Target</label>
+          <select id="edit-habit-freq-type" class="form-select">
+            <option value="daily">Every Day</option>
+            <option value="weekly_days">Specific Days of Week</option>
+          </select>
+        </div>
+
+        <!-- Specific days selection grid -->
+        <div class="form-group" id="edit-form-specific-days-wrap" style="display: none;">
+          <label class="form-label">Select Active Days</label>
+          <div class="day-selector-grid">
+            <button class="day-selector-btn edit-day-selector-btn selected" data-day="1">M</button>
+            <button class="day-selector-btn edit-day-selector-btn selected" data-day="2">T</button>
+            <button class="day-selector-btn edit-day-selector-btn selected" data-day="3">W</button>
+            <button class="day-selector-btn edit-day-selector-btn selected" data-day="4">T</button>
+            <button class="day-selector-btn edit-day-selector-btn selected" data-day="5">F</button>
+            <button class="day-selector-btn edit-day-selector-btn selected" data-day="6">S</button>
+            <button class="day-selector-btn edit-day-selector-btn selected" data-day="7">S</button>
+          </div>
+        </div>
+
+        <!-- Form Actions -->
+        <div class="form-actions">
+          <button type="submit" class="btn btn-primary" style="width: 100%; margin-top: 10px;">Save Changes</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Bootstrapping main Javascript module -->
+  <script type="module" src="js/app.js"></script>
+</body>
+</html>

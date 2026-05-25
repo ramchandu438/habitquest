@@ -1,0 +1,14 @@
+{
+  "name": "habitquest",
+  "version": "1.0.0",
+  "description": "Premium Gamified Habit Tracker SPA",
+  "main": "index.html",
+  "scripts": {
+    "dev": "npx http-server ./ -c-1 -p 3050 -o"
+  },
+  "dependencies": {
+    "http-server": "^14.1.1"
+  },
+  "author": "Antigravity Pair Program",
+  "license": "ISC"
+}
