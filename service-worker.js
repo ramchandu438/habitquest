@@ -1,4 +1,4 @@
-const CACHE_NAME = 'habitquest-ledger-v3';
+const CACHE_NAME = 'habitquest-ledger-v4';
 const ASSETS_TO_CACHE = [
   './',
   './index.html',

@@ -14,7 +14,7 @@ export function renderProgressRing(selector, percentage) {
   const strokeDashoffset = circumference - (pct / 100) * circumference;
 
   container.innerHTML = `
-    <svg class="circular-chart" viewBox="0 0 140 140" width="140" height="140">
+    <svg class="circular-chart" viewBox="0 0 140 140" width="100%" height="100%">
       <circle class="circle-bg" cx="70" cy="70" r="${radius}" stroke-width="${strokeWidth}" />
       <circle class="circle-fill" cx="70" cy="70" r="${radius}" 
               stroke-width="${strokeWidth}"

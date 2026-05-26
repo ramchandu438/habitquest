@@ -1740,6 +1740,7 @@ select.theme-select:hover {
 
   .filter-group {
     display: flex !important;
+    flex-wrap: nowrap !important;
     overflow-x: auto !important;
     white-space: nowrap !important;
     -webkit-overflow-scrolling: touch !important;
@@ -1748,6 +1749,7 @@ select.theme-select:hover {
     -ms-overflow-style: none !important;  /* IE/Edge */
     gap: 8px !important;
     width: 100% !important;
+    max-width: 100% !important;
     border: none !important;
     background: transparent !important;
   }
@@ -1766,6 +1768,8 @@ select.theme-select:hover {
     border: none !important;
     background: transparent !important;
     padding: 0 2px 8px 2px !important;
+    flex-wrap: nowrap !important;
+    max-width: 100% !important;
   }
 
   [data-theme="vintage-journal"] .filter-btn {
@@ -1773,6 +1777,7 @@ select.theme-select:hover {
     background: #eae9e0 !important;
     border-radius: var(--radius-sm) !important;
     box-shadow: 2px 2px 0px rgba(0, 0, 0, 0.12) !important;
+    flex: 0 0 auto !important; /* Stop shrinking swipe buttons! */
   }
 
   [data-theme="vintage-journal"] .filter-btn.active {
@@ -1884,6 +1889,51 @@ select.theme-select:hover {
   .achievements-grid {
     grid-template-columns: repeat(2, 1fr) !important;
     gap: 10px !important;
+  }
+
+  /* Sidebar panel two-column grid on mobile */
+  .sidebar-panel {
+    display: grid !important;
+    grid-template-columns: 1fr 1.2fr !important;
+    gap: 12px !important;
+    align-items: stretch !important;
+    width: 100% !important;
+  }
+
+  .daily-focus-widget {
+    padding: 14px !important;
+    height: 100% !important;
+    justify-content: center !important;
+    align-items: center !important;
+  }
+
+  .circular-progress-wrap {
+    width: 95px !important;
+    height: 95px !important;
+    margin: 4px auto !important;
+  }
+
+  .progress-pct {
+    font-size: 1.35rem !important;
+  }
+
+  .progress-label {
+    font-size: 0.6rem !important;
+  }
+
+  .sidebar-panel .glass-panel {
+    padding: 14px !important;
+    margin: 0 !important;
+    height: 100% !important;
+  }
+
+  .activity-mini-list {
+    gap: 8px !important;
+  }
+
+  .activity-item {
+    padding-bottom: 6px !important;
+    gap: 8px !important;
   }
 }
 
