@@ -9,12 +9,14 @@
     "package-win": "electron-packager . HabitQuest --platform=win32 --arch=x64 --out=dist --overwrite"
   },
   "dependencies": {
-    "http-server": "^14.1.1"
+    "http-server": "^14.1.1",
+    "pdfkit": "^0.18.0"
   },
   "author": "Antigravity Pair Program",
   "license": "ISC",
   "devDependencies": {
     "electron": "^42.2.0",
-    "electron-packager": "^17.1.2"
+    "electron-packager": "^17.1.2",
+    "md-to-pdf": "^5.2.5"
   }
 }
