@@ -1820,19 +1820,25 @@ select.theme-select:hover {
   }
 
   .checkbox-container {
-    width: 38px !important;  /* Giant thumb-friendly mobile touch targets! */
-    height: 38px !important;
+    width: 100% !important;
+    max-width: 38px !important;  /* Giant thumb-friendly mobile touch targets! */
+    aspect-ratio: 1 / 1 !important;
+    margin: 0 auto !important;
   }
 
   .checkmark {
-    width: 38px !important;
-    height: 38px !important;
+    width: 100% !important;
+    height: 100% !important;
   }
 
   .checkbox-container .checkmark::after {
     width: 7px !important;   /* Bigger check mark path for clarity */
     height: 13px !important;
     margin-bottom: 2.5px !important;
+  }
+
+  .habit-card-actions {
+    flex-shrink: 0 !important;
   }
 
   /* Main Navigation Tabs: Slide nicely on mobile */
@@ -1939,12 +1945,16 @@ select.theme-select:hover {
 
 /* Very small/narrow viewports <= 360px for checkbox grid preservation */
 @media (max-width: 360px) {
+  .app-container {
+    padding: 10px 8px !important;
+  }
   .weekly-check-grid {
     gap: 3px !important;
   }
   .checkbox-container, .checkmark {
-    width: 30px !important;
-    height: 30px !important;
+    width: 100% !important;
+    max-width: 30px !important;
+    aspect-ratio: 1 / 1 !important;
   }
   .checkbox-container .checkmark::after {
     width: 5px !important;
@@ -1956,7 +1966,7 @@ select.theme-select:hover {
     font-size: 0.6rem !important;
   }
   .habit-card {
-    padding: 12px !important;
+    padding: 10px !important;
   }
   .habit-card-streaks {
     padding: 6px 8px !important;
