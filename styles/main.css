@@ -1672,9 +1672,9 @@ select.theme-select:hover {
 }
 
 /* ==========================================================================
-   ULTRA-PREMIUM MOBILE RESPONSIVE ADAPTATIONS (Devices <= 600px)
+   ULTRA-PREMIUM MOBILE RESPONSIVE ADAPTATIONS (Devices <= 768px)
    ========================================================================== */
-@media (max-width: 600px) {
+@media (max-width: 768px) {
   /* Tighten global app padding to maximize viewport screen space */
   .app-container {
     padding: 12px 10px !important;
