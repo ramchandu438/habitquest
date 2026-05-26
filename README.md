@@ -19,7 +19,7 @@ HabitQuest features full gamified experience-level progression, continuous strea
 
 ## 🚀 Accessing the Application
 
-You can access and run **HabitQuest** in three different ways depending on your needs.
+You can access and run **HabitQuest** in four different ways depending on your needs.
 
 ### 🌐 Method 1: Play Instantly Online (No Setup Required)
 The app is published live and fully interactive on the web! Simply click the link below to open it in your browser:
@@ -27,7 +27,34 @@ The app is published live and fully interactive on the web! Simply click the lin
 
 ---
 
-### 💻 Method 2: Running Locally in Developer Mode
+### 📱 Method 2: Install as a Mobile App (Android / iOS PWA)
+HabitQuest is a certified **Progressive Web App (PWA)**, meaning you can install it directly onto your smartphone (like Samsung Galaxy, Pixel, or iPhone) to run as a full-screen, offline-capable native mobile application!
+
+#### How to Install on Samsung / Android:
+1. Open **Google Chrome** on your smartphone.
+2. Visit the live link: **`https://ramchandu438.github.io/habitquest/`**
+3. Tap the three vertical dots `⋮` at the top right corner of the Chrome browser.
+4. Select **"Add to Home screen"** or **"Install app"**.
+5. A high-fidelity analog typewriter launcher icon will appear on your Home Screen and App Drawer! Tap it to launch HabitQuest in fullscreen mode without browser URL bars.
+
+#### How to Install on iPhone / iOS:
+1. Open **Safari** on your iPhone.
+2. Visit the live link: **`https://ramchandu438.github.io/habitquest/`**
+3. Tap the **Share** button (a box with an arrow pointing up) in the Safari bottom toolbar.
+4. Scroll down and select **"Add to Home Screen"**.
+5. Launch the app directly from your iOS Home Screen!
+
+> [!TIP]
+> **Stuck on old layouts or update caching?**
+> Mobile browsers cache PWAs aggressively. If you've updated your styles but your phone continues showing older layouts, follow these quick steps:
+> 1. In Chrome on your phone, tap `⋮` (Settings) -> **Site settings** -> **All sites**.
+> 2. Search for `ramchandu438.github.io` and select it.
+> 3. Tap **"Clear & reset"** to purge the old cached files.
+> 4. Reload the page in Chrome, or open it in **Incognito Mode** to instantly see the fluid, beautiful layout updates!
+
+---
+
+### 💻 Method 3: Running Locally in Developer Mode
 If you want to run HabitQuest locally on your machine, modify styles, or check configurations, follow these simple terminal commands.
 
 #### Prerequisites
@@ -56,7 +83,7 @@ If you want to run HabitQuest locally on your machine, modify styles, or check c
 
 ---
 
-### 📦 Method 3: Compiling into a Standalone Desktop Executable (.exe)
+### 📦 Method 4: Compiling into a Standalone Desktop Executable (.exe)
 If you want to package the application into a portable Windows executable (`HabitQuest.exe`) that runs without any terminal prompts, you can compile it locally in seconds:
 
 1. **Open your terminal inside the project directory and run:**
