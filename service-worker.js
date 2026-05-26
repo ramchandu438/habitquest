@@ -1,4 +1,4 @@
-const CACHE_NAME = 'habitquest-ledger-v2';
+const CACHE_NAME = 'habitquest-ledger-v3';
 const ASSETS_TO_CACHE = [
   './',
   './index.html',
@@ -42,7 +42,7 @@ self.addEventListener('activate', (e) => {
 // Fetch Interceptor: Serve assets from cache, fallback to network
 self.addEventListener('fetch', (e) => {
   e.respondWith(
-    caches.match(e.request).then((cachedResponse) => {
+    caches.match(e.request, { ignoreSearch: true }).then((cachedResponse) => {
       if (cachedResponse) {
         return cachedResponse;
       }
@@ -53,7 +53,7 @@ self.addEventListener('fetch', (e) => {
     }).catch(() => {
       // Fallback offline handler
       if (e.request.mode === 'navigate') {
-        return caches.match('./index.html');
+        return caches.match('./index.html', { ignoreSearch: true });
       }
     })
   );

@@ -447,6 +447,7 @@ select.theme-select:hover {
   display: flex;
   gap: 12px;
   align-items: center;
+  min-width: 0;
 }
 
 .habit-icon-wrapper {
@@ -459,6 +460,7 @@ select.theme-select:hover {
   background: hsl(var(--cat-color) / 0.12);
   border: 1px solid hsl(var(--cat-color) / 0.25);
   color: hsl(var(--cat-color));
+  flex-shrink: 0;
 }
 
 .habit-icon-wrapper svg {
@@ -469,12 +471,15 @@ select.theme-select:hover {
 .habit-details {
   display: flex;
   flex-direction: column;
+  min-width: 0;
 }
 
 .habit-name {
   font-weight: 700;
   font-size: 1.05rem;
   line-height: 1.2;
+  white-space: normal;
+  word-break: break-word;
 }
 
 .habit-category-tag {
@@ -1757,6 +1762,25 @@ select.theme-select:hover {
     font-size: 0.85rem !important;
   }
 
+  [data-theme="vintage-journal"] .filter-group {
+    border: none !important;
+    background: transparent !important;
+    padding: 0 2px 8px 2px !important;
+  }
+
+  [data-theme="vintage-journal"] .filter-btn {
+    border: 1.5px solid #121212 !important;
+    background: #eae9e0 !important;
+    border-radius: var(--radius-sm) !important;
+    box-shadow: 2px 2px 0px rgba(0, 0, 0, 0.12) !important;
+  }
+
+  [data-theme="vintage-journal"] .filter-btn.active {
+    background: #121212 !important;
+    color: #fbfbf8 !important;
+    box-shadow: none !important;
+  }
+
   .stats-summary {
     display: grid !important;
     grid-template-columns: 1fr 1fr !important;
@@ -1810,6 +1834,13 @@ select.theme-select:hover {
   .nav-tabs {
     gap: 4px !important;
     padding-bottom: 6px !important;
+    scrollbar-width: none !important; /* Firefox */
+    -ms-overflow-style: none !important;  /* IE/Edge */
+    -webkit-overflow-scrolling: touch !important;
+  }
+
+  .nav-tabs::-webkit-scrollbar {
+    display: none !important; /* Chrome/Safari */
   }
 
   .tab-link {
@@ -1823,12 +1854,19 @@ select.theme-select:hover {
     height: 15px !important;
   }
 
-  /* Modals snuggled styling */
+  /* Modals snuggled styling with overflow scrolling */
+  .modal-overlay {
+    align-items: flex-start !important;
+    overflow-y: auto !important;
+    -webkit-overflow-scrolling: touch !important;
+  }
+
   .modal-content {
     padding: 20px !important;
     width: calc(100% - 16px) !important;
-    margin: 0 auto !important;
+    margin: 30px auto !important;
     gap: 16px !important;
+    max-height: none !important;
   }
 
   .category-picker-grid {
@@ -1846,5 +1884,32 @@ select.theme-select:hover {
   .achievements-grid {
     grid-template-columns: repeat(2, 1fr) !important;
     gap: 10px !important;
+  }
+}
+
+/* Very small/narrow viewports <= 360px for checkbox grid preservation */
+@media (max-width: 360px) {
+  .weekly-check-grid {
+    gap: 3px !important;
+  }
+  .checkbox-container, .checkmark {
+    width: 30px !important;
+    height: 30px !important;
+  }
+  .checkbox-container .checkmark::after {
+    width: 5px !important;
+    height: 10px !important;
+    border-width: 0 2px 2px 0 !important;
+    margin-bottom: 2px !important;
+  }
+  .day-label {
+    font-size: 0.6rem !important;
+  }
+  .habit-card {
+    padding: 12px !important;
+  }
+  .habit-card-streaks {
+    padding: 6px 8px !important;
+    font-size: 0.72rem !important;
   }
 }
