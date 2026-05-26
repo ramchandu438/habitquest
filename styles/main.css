@@ -1732,10 +1732,25 @@ select.theme-select:hover {
   }
 
   /* Horizontal category filters layout (Premium swipe control!) */
+  .dashboard-grid {
+    display: grid !important;
+    grid-template-columns: 1fr !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    overflow: hidden !important;
+  }
+
+  .habits-section {
+    width: 100% !important;
+    max-width: 100% !important;
+    overflow: hidden !important;
+  }
+
   .dashboard-filters {
-    flex-direction: column !important;
-    align-items: stretch !important;
-    gap: 10px !important;
+    display: block !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    overflow: hidden !important;
   }
 
   .filter-group {
@@ -1750,6 +1765,7 @@ select.theme-select:hover {
     gap: 8px !important;
     width: 100% !important;
     max-width: 100% !important;
+    min-width: 0 !important; /* Prevent flex sizing leakage */
     border: none !important;
     background: transparent !important;
   }
@@ -1770,6 +1786,8 @@ select.theme-select:hover {
     padding: 0 2px 8px 2px !important;
     flex-wrap: nowrap !important;
     max-width: 100% !important;
+    min-width: 0 !important; /* Prevent flex sizing leakage */
+    overflow-x: auto !important;
   }
 
   [data-theme="vintage-journal"] .filter-btn {
