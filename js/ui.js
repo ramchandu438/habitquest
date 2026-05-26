@@ -55,6 +55,7 @@ const CATEGORY_COLORS = {
 };
 
 let currentFilter = 'all';
+let lastRenderedDate = formatDate(new Date());
 
 // Initialize UI layout
 export function initUI() {
@@ -65,12 +66,43 @@ export function initUI() {
   document.documentElement.setAttribute('data-theme', 'vintage-journal');
 
   // Render current date and day display
+  updateDateHeader();
+
+  // Setup dynamic midnight rolling check
+  setupMidnightCheck();
+}
+
+// Update date header dynamically
+function updateDateHeader() {
   const dateDisplay = document.getElementById('current-date-display');
   if (dateDisplay) {
     const today = new Date();
     const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
     dateDisplay.textContent = today.toLocaleDateString('en-US', options);
   }
+}
+
+// Setup dynamic midnight rolling check on focus/visibility change
+function setupMidnightCheck() {
+  const checkTimeShift = () => {
+    const todayStr = formatDate(new Date());
+    if (todayStr !== lastRenderedDate) {
+      console.log(`Midnight roll detected! Shifting from ${lastRenderedDate} to ${todayStr}`);
+      lastRenderedDate = todayStr;
+      updateDateHeader();
+      renderAll();
+    }
+  };
+
+  window.addEventListener('focus', checkTimeShift);
+  document.addEventListener('visibilitychange', () => {
+    if (document.visibilityState === 'visible') {
+      checkTimeShift();
+    }
+  });
+
+  // Periodic fallback check (every 30 seconds)
+  setInterval(checkTimeShift, 30000);
 }
 
 // Global Re-render
